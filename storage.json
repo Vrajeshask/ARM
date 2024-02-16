@@ -1,7 +1,19 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "Storagetype": {
+            "type": "string",
+            "metadata": {
+                "description": "Storage type"
+            },
+            "defaultValue": "Premium",
+            "allowedValues": [
+                "Standard",
+                "Premium"
+            ]
+        }
+    },
     "functions": [],
     "variables": {},
     "resources": [
@@ -16,7 +28,7 @@
             "kind": "StorageV2",
             "sku": {
                 "name": "Standard_ZRS",
-                "tier": "Standard"
+                "tier": "[parameters('Storagetype')]"
             }
         }
     ],
